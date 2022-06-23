@@ -313,10 +313,9 @@ class geneticAlgorithm:
 
 startTime = dt.now()
 
-popSize = 2
+popSize = 10
 data = Data()
 disp = displayManager()
-disp.printAvailableData()
 gen = 0
 print("\nGENERATION " + str(gen))
 pop = population(popSize)

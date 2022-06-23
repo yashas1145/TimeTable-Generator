@@ -3,7 +3,7 @@ from datetime import datetime as dt
 
 class Data:
     # [["R1", 25],["R2",45],["R3",35]] 
-    rooms = {"R1":25, "R2":45, "R3":35}
+    rooms = {"A312":25, "A313":45, "A314":35}
     instructor = {"I1":"KSR", "I2":"VKB", "I3":"NNC", "I4":"KVS"}
     #instructor = [["I1","Dr James Web"], ["I2","Mr. Mike Brown"], ["I3","Dr Steve Day"], ["I4","Mrs Jane Doe"]]
     meetingTime = {"MT1":"MWF 09:00-10:00", "MT2":"MWF 10:00-11:00", "MT3":"TTH 09:00-10:30", "MT4":"TTH 10:30-12:00"}
@@ -19,18 +19,17 @@ class Data:
         for i in self.instructor:
             self._instructors.append(faculty(i, self.instructor[i]))
 
-        course1=course("C1","325K",[self._instructors[0],self._instructors[1]],25)
-        course2=course("C2","319K",[self._instructors[0],self._instructors[1],self._instructors[2]],35)
-        course3=course("C3","42k",[self._instructors[0],self._instructors[1]],25)
-        course4=course("C4","464K",[self._instructors[2],self._instructors[3]],30)
-        course5=course("C5","360C",[self._instructors[3]],35)
-        course6=course("C6","303K",[self._instructors[0],self._instructors[2]],45)
-        course7=course("C7","303L",[self._instructors[1],self._instructors[3]],45)
-        self._course = [course1,course2,course3,course4,course5,course6,course7]
+        course1=course("C1","18CS81",[self._instructors[0],self._instructors[1]],25)
+        course2=course("C2","18CS82",[self._instructors[0],self._instructors[1],self._instructors[2]],35)
+        course3=course("C3","18CS61",[self._instructors[0],self._instructors[1]],25)
+        course4=course("C4","18CS62",[self._instructors[2],self._instructors[3]],30)
+        course5=course("C5","18CS63",[self._instructors[3]],35)
+        course6=course("C6","18CS64",[self._instructors[0],self._instructors[2]],45)
+        self._course = [course1,course2,course3,course4,course5,course6]
 
-        dept1 = department("MATH",[course1,course3])
-        dept2 = department("EE",[course2,course4,course5])
-        dept3 = department("PHY",[course6,course7])
+        dept1 = department("CSE",[course1,course3])
+        dept2 = department("ISE",[course2,course4,course5])
+        dept3 = department("ECE",[course6,course4])
         self._dept = [dept1,dept2,dept3]
 
         self._numberOfClass = 0
@@ -294,7 +293,7 @@ class geneticAlgorithm:
 
 startTime = dt.now()
 
-popSize = 10
+popSize = 7
 data = Data()
 disp = displayManager()
 disp.printAvailableData()
@@ -305,9 +304,9 @@ pop.getSchedule().sort(key=lambda x: x.getFitness(), reverse=True)
 disp.printGeneration(pop)
 disp.printSchedule(pop.getSchedule()[0])
 
-numberOfEliteSchedule = 1
-tournamentSelectionSize = 3
-mutationRate = 0.1
+numberOfEliteSchedule = 3
+tournamentSelectionSize = 5
+mutationRate = 0.3
 
 ga = geneticAlgorithm()
 while pop.getSchedule()[0].getFitness() != 1.0:
