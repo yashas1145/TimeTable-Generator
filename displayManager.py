@@ -59,10 +59,10 @@ class displayManager:
         print(table)
 
     def printGeneration(self, pop):
-        table = pt.PrettyTable(['Schedule', 'Fitness', 'Conflicts', 'Classes'])
+        table = pt.PrettyTable(['Schedule', 'Fitness', 'Conflicts'])
         schedule = pop.getSchedule()
         for i in range(len(schedule)):
-            table.add_row([str(i), round(schedule[i].getFitness(), 3), schedule[i].getConflict(), schedule[i].__str__()])
+            table.add_row([str(i), round(schedule[i].getFitness(), 3), schedule[i].getConflict()])
         print(table)
 
     def printSchedule(self, schedule):
